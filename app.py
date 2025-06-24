@@ -5,7 +5,7 @@ from models.usuario_model import Usuario
 from models.administrador_model import Administrador
 from database import db
 from decorators import login_required
-
+import os
 # Crear instancia de Flask
 app = Flask(__name__)
 
@@ -168,9 +168,8 @@ def crear_super_admin():
 app.secret_key = 'tu_clave_secreta_'
 
 if __name__ == "__main__":
-    # Crear todas las tablas de base de datos al iniciar
-    with app.app_context():
-        db.create_all()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
     
     # Ejecutar aplicación en modo debug
     app.run(debug=True)
