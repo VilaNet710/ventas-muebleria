@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} ADMINISTRADORES | EDIT {% endblock %}
+
+{% block content %}
+
+<h1>Actualizar administrador</h1>
+
+<form action="{{ url_for('administrador.edit',id=administrador.id) }}" method="POST">
+    <div class="mb-3">
+        <label for="" class="form-label">Nombre</label>
+        <input type="text" class="form-control" name="nombre" value="{{ administrador.nombre}}" required>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Email</label>
+        <input type="email" class="form-control" name="email" value="{{ administrador.email }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Teléfono</label>
+        <input type="text" class="form-control" name="telefono" value="{{ administrador.telefono }}">
+    </div>
+    <div class="alert alert-warning">
+        <strong>Nota:</strong> Por seguridad, las contraseñas no pueden ser editadas desde este formulario.
+    </div>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+    <a href="{{ url_for('administrador.index') }}" class="btn btn-secondary">Cancelar</a>
+</form>
+
+{% endblock %}

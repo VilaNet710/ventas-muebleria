@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %} USUARIOS | EDIT {% endblock %}
+
+{% block content %}
+
+<h1>Actualizar usuario</h1>
+
+<form action="{{ url_for('usuario.edit',id=usuario.id) }}" method="POST">
+    <div class="mb-3">
+        <label for="" class="form-label">Nombre</label>
+        <input type="text" class="form-control" name="nombre" value="{{ usuario.nombre}}" required>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Usuario</label>
+        <input type="text" class="form-control" name="username" value="{{ usuario.username }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Rol</label>
+        <select name="rol" class="form-control" required>
+            <option value="usua" {%if usuario.rol=='usua' %}selected{% endif %}>Usuario</option>
+            <option value="admin" {%if usuario.rol=='admin' %}selected{% endif %}>Administrador</option>
+        </select>
+    </div>
+    <div class="alert alert-warning">
+        <strong>Nota:</strong> Por seguridad, las contraseñas no pueden ser editadas desde este formulario.
+    </div>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+    <a href="{{ url_for('usuario.index') }}" class="btn btn-secondary">Cancelar</a>
+</form>
+
+{% endblock %}

@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block title %} PRODUCTOS | EDIT {% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card" style="border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1);">
+                <div class="card-header text-center" style="background: linear-gradient(45deg, var(--primary-brown), var(--secondary-brown)); color: white; border-radius: 20px 20px 0 0;">
+                    <h2><i class="fas fa-edit"></i> Actualizar Producto</h2>
+                </div>
+                <div class="card-body p-5">
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <div class="text-center">
+                                <img src="{{ producto.get_imagen_url() }}" alt="{{ producto.nombre }}" 
+                                     class="img-fluid rounded" style="max-height: 200px; border: 3px solid var(--primary-green);">
+                                <p class="mt-2 text-muted">Imagen actual</p>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <form action="{{ url_for('producto.edit',id=producto.id) }}" method="POST" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="nombre" class="form-label">
+                                                <i class="fas fa-tag"></i> Nombre
+                                            </label>
+                                            <input type="text" class="form-control" name="nombre" value="{{ producto.nombre}}" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="categoria" class="form-label">
+                                                <i class="fas fa-list"></i> Categoría
+                                            </label>
+                                            <select name="categoria" class="form-control">
+                                                <option value="sillas" {%if producto.categoria=='sillas' %}selected{% endif %}>🪑 Sillas</option>
+                                                <option value="mesas" {%if producto.categoria=='mesas' %}selected{% endif %}>🪑 Mesas</option>
+                                                <option value="camas" {%if producto.categoria=='camas' %}selected{% endif %}>🛏️ Camas</option>
+                                                <option value="armarios" {%if producto.categoria=='armarios' %}selected{% endif %}>🚪 Armarios</option>
+                                                <option value="sofas" {%if producto.categoria=='sofas' %}selected{% endif %}>🛋️ Sofás</option>
+                                                <option value="escritorios" {%if producto.categoria=='escritorios' %}selected{% endif %}>💻 Escritorios</option>
+                                                <option value="estanterias" {%if producto.categoria=='estanterias' %}selected{% endif %}>📚 Estanterías</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="descripcion" class="form-label">
+                                        <i class="fas fa-align-left"></i> Descripción
+                                    </label>
+                                    <textarea class="form-control" name="descripcion" rows="3">{{ producto.descripcion }}</textarea>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="precio" class="form-label">
+                                                <i class="fas fa-dollar-sign"></i> Precio
+                                            </label>
+                                            <input type="number" step="0.01" class="form-control" name="precio" value="{{ producto.precio }}" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="stock" class="form-label">
+                                                <i class="fas fa-boxes"></i> Stock
+                                            </label>
+                                            <input type="number" class="form-control" name="stock" value="{{ producto.stock }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-4">
+                                    <label for="imagen" class="form-label">
+                                        <i class="fas fa-image"></i> Nueva Imagen (opcional)
+                                    </label>
+                                    <input type="file" class="form-control" name="imagen" accept="image/*">
+                                    <div class="form-text">Deja vacío para mantener la imagen actual</div>
+                                </div>
+                                
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-success btn-lg me-3">
+                                        <i class="fas fa-save"></i> Actualizar Producto
+                                    </button>
+                                    <a href="{{ url_for('producto.index') }}" class="btn btn-secondary btn-lg">
+                                        <i class="fas fa-arrow-left"></i> Volver
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

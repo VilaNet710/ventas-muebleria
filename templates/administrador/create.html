@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %} ADMINISTRADORES | CREATE {% endblock %}
+
+{% block content %}
+
+<h1>Crear Nuevo Administrador</h1>
+
+<div class="alert alert-warning">
+    <strong>Privilegio de Super Administrador:</strong> Solo tú puedes crear nuevos administradores en el sistema.
+</div>
+
+<form action="{{ url_for('administrador.create') }}" method="POST">
+    <div class="mb-3">
+        <label for="" class="form-label">Nombre Completo</label>
+        <input type="text" class="form-control" name="nombre" required>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Email</label>
+        <input type="email" class="form-control" name="email" required>
+        <div class="form-text">Este será su nombre de usuario para acceder al sistema</div>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Contraseña</label>
+        <input type="password" class="form-control" name="password" required>
+        <div class="form-text">Asigna una contraseña segura para el nuevo administrador</div>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Teléfono</label>
+        <input type="text" class="form-control" name="telefono">
+    </div>
+    
+    <div class="alert alert-info">
+        <strong>Nota:</strong> El nuevo administrador será creado como administrador regular (no Super Admin). 
+        Solo puede haber un Super Administrador en el sistema.
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Crear Administrador</button>
+    <a href="{{ url_for('administrador.index') }}" class="btn btn-secondary">Cancelar</a>
+</form>
+
+{% endblock %}

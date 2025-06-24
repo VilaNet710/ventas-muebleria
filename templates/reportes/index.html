@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %} REPORTES {% endblock %}
+
+{% block content %}
+
+<h1>Centro de Reportes</h1>
+
+<div class="alert alert-info">
+    <strong>Información:</strong> Desde aquí puedes generar reportes en formato PDF con el logo de la empresa.
+</div>
+
+<div class="row">
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <i class="fas fa-chart-line fa-3x text-primary mb-3"></i>
+                <h5 class="card-title">Reporte de Ventas</h5>
+                <p class="card-text">Genera un reporte completo de todas las ventas registradas en el sistema.</p>
+                <a href="{{ url_for('reporte.reporte_ventas') }}" class="btn btn-primary">
+                    <i class="fas fa-download"></i> Descargar PDF
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <i class="fas fa-boxes fa-3x text-success mb-3"></i>
+                <h5 class="card-title">Reporte de Productos</h5>
+                <p class="card-text">Inventario completo con precios, stock y estado de todos los productos.</p>
+                <a href="{{ url_for('reporte.reporte_productos') }}" class="btn btn-success">
+                    <i class="fas fa-download"></i> Descargar PDF
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="card">
+            <div class="card-body text-center">
+                <i class="fas fa-shopping-cart fa-3x text-warning mb-3"></i>
+                <h5 class="card-title">Estadísticas de Compras</h5>
+                <p class="card-text">Resumen de compras pendientes, aprobadas y estadísticas generales.</p>
+                <a href="{{ url_for('reporte.reporte_compras') }}" class="btn btn-warning">
+                    <i class="fas fa-eye"></i> Ver Estadísticas
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-info-circle"></i> Información sobre los Reportes</h5>
+            </div>
+            <div class="card-body">
+                <ul>
+                    <li><strong>Formato PDF:</strong> Todos los reportes se generan en formato PDF profesional</li>
+                    <li><strong>Logo de la empresa:</strong> Incluye el logo de Muebles Met Vil</li>
+                    <li><strong>Información completa:</strong> Datos detallados y totales calculados</li>
+                    <li><strong>Fecha de generación:</strong> Cada reporte incluye la fecha y hora de creación</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

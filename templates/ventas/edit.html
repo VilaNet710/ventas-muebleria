@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %} VENTAS | EDIT {% endblock %}
+
+{% block content %}
+
+<h1>Actualizar venta</h1>
+
+<form action="{{ url_for('venta.edit',id=venta.id) }}" method="POST">
+    <div class="mb-3">
+        <label for="" class="form-label">Cliente</label>
+        <input type="text" class="form-control" name="cliente" value="{{ venta.cliente }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Producto</label>
+        <select name="producto_id" class="form-control" required>
+            {% for producto in productos %}
+            <option value="{{producto.id}}" {%if venta.producto_id==producto.id %}selected{% endif %}>{{producto.nombre}} - Stock: {{producto.stock}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Cantidad</label>
+        <input type="number" class="form-control" name="cantidad" value="{{ venta.cantidad }}" required>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Precio Unitario</label>
+        <input type="number" step="0.01" class="form-control" name="precio_unitario" value="{{ venta.precio_unitario }}" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %} DETALLE VENTA #{{ venta.id }} {% endblock %}
+
+{% block content %}
+
+<h1>Detalle de Venta #{{ venta.id }}</h1>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5>Información de la Venta</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>ID:</strong> {{ venta.id }}</p>
+                        <p><strong>Fecha:</strong> {{ venta.fecha.strftime('%d/%m/%Y %H:%M') }}</p>
+                        <p><strong>Cliente:</strong> {{ venta.cliente }}</p>
+                        <p><strong>Producto:</strong> {{ venta.producto.nombre if venta.producto else 'N/A' }}</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Cantidad:</strong> {{ venta.cantidad }}</p>
+                        <p><strong>Precio Unitario:</strong> ${{ venta.precio_unitario }}</p>
+                        <p><strong>Total:</strong> ${{ venta.total }}</p>
+                        <p><strong>Tipo:</strong> 
+                            {% if venta.tipo_venta == 'directa' %}
+                            <span class="badge bg-primary">Venta Directa</span>
+                            {% else %}
+                            <span class="badge bg-success">Venta por Compra</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        {% if venta.compra_id %}
+        <div class="card">
+            <div class="card-header">
+                <h5>Compra Relacionada</h5>
+            </div>
+            <div class="card-body">
+                <p><strong>ID Compra:</strong> #{{ venta.compra_id }}</p>
+                {% if venta.compra %}
+                <p><strong>Usuario:</strong> {{ venta.compra.usuario.nombre if venta.compra.usuario else 'N/A' }}</p>
+                <p><strong>Estado:</strong> 
+                    <span class="badge bg-success">{{ venta.compra.estado|title }}</span>
+                </p>
+                <p><strong>Fecha Aprobación:</strong> 
+                    {{ venta.compra.fecha_aprobacion.strftime('%d/%m/%Y') if venta.compra.fecha_aprobacion else 'N/A' }}
+                </p>
+                {% if venta.compra.comentarios %}
+                <p><strong>Comentarios:</strong> {{ venta.compra.comentarios }}</p>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+        {% else %}
+        <div class="card">
+            <div class="card-header">
+                <h5>Venta Manual</h5>
+            </div>
+            <div class="card-body">
+                <p>Esta venta fue registrada manualmente por un administrador.</p>
+                <p>No está relacionada con ninguna compra de usuario.</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="mt-4">
+    <a href="{{ url_for('venta.index') }}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i> Volver a Ventas
+    </a>
+    {% if venta.tipo_venta == 'directa' %}
+    <a href="{{ url_for('venta.edit', id=venta.id) }}" class="btn btn-warning">
+        <i class="fas fa-edit"></i> Editar Venta
+    </a>
+    {% endif %}
+    {% if venta.compra_id %}
+    <a href="{{ url_for('compra.generar_factura', id=venta.compra_id) }}" class="btn btn-primary">
+        <i class="fas fa-file-pdf"></i> Ver Factura Original
+    </a>
+    {% endif %}
+</div>
+
+{% endblock %}

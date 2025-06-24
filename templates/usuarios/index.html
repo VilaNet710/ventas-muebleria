@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %} USUARIOS {% endblock %}
+
+{% block content %}
+
+<h1>Lista de usuarios</h1>
+
+{% if session.tipo == 'administrador' %}
+<a href="{{ url_for('usuario.create' )}}" class="btn btn-success mb-3">Nuevo Usuario</a>
+{% endif %}
+
+<table class="table table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Username</th>
+        <th>Rol</th>
+        {% if session.tipo == 'administrador' %}
+        <th>Acciones</th>
+        {% endif %}
+    </tr>
+    {% for item in usuarios %}
+    <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.nombre}}</td>
+        <td>{{item.username}}</td>
+        <td>{{item.rol}}</td>
+        {% if session.tipo == 'administrador' %}
+        <td>
+            <a href="{{ url_for('usuario.edit', id=item.id)}}" class="btn btn-warning btn-sm">Editar</a>
+            <a href="{{ url_for('usuario.delete',id=item.id)}}" class="btn btn-danger btn-sm">Eliminar</a>
+        </td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>
+
+{% if session.tipo == 'usuario' %}
+<div class="alert alert-info mt-4">
+    <strong>Información:</strong> Como usuario, solo puedes ver la lista de usuarios registrados. No puedes agregar, editar o eliminar usuarios.
+</div>
+{% endif %}
+
+{% endblock %}

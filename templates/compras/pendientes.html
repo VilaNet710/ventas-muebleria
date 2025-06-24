@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block title %} COMPRAS PENDIENTES {% endblock %}
+
+{% block content %}
+
+<h1>Compras Pendientes de Aprobación</h1>
+
+<div class="row mb-4">
+    <div class="col-md-8">
+        <div class="alert alert-warning">
+            <h6><i class="fas fa-exclamation-triangle"></i> Compras Esperando Tu Aprobación</h6>
+            <p class="mb-0">Los usuarios han solicitado estas compras y necesitan tu aprobación para generar sus facturas.</p>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card bg-light">
+            <div class="card-body text-center">
+                <h3 class="text-warning">{{ compras_pendientes|length }}</h3>
+                <p class="mb-0">Solicitudes Pendientes</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Fecha</th>
+        <th>Usuario</th>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Total</th>
+        <th>Acciones</th>
+    </tr>
+    {% for item in compras_pendientes %}
+    <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.fecha.strftime('%Y-%m-%d %H:%M')}}</td>
+        <td>{{item.usuario.nombre if item.usuario else 'N/A'}}</td>
+        <td>{{item.producto.nombre if item.producto else 'N/A'}}</td>
+        <td>{{item.cantidad}}</td>
+        <td>${{item.total}}</td>
+        <td>
+            <button class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#aprobarModal{{item.id}}">
+                <i class="fas fa-check"></i> Aprobar
+            </button>
+            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#rechazarModal{{item.id}}">
+                <i class="fas fa-times"></i> Rechazar
+            </button>
+        </td>
+    </tr>
+    
+    <!-- Modal Aprobar -->
+    <div class="modal fade" id="aprobarModal{{item.id}}" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Aprobar Compra #{{item.id}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form action="{{ url_for('compra.aprobar', id=item.id) }}" method="POST">
+                    <div class="modal-body">
+                        <p><strong>Usuario:</strong> {{item.usuario.nombre}}</p>
+                        <p><strong>Producto:</strong> {{item.producto.nombre}}</p>
+                        <p><strong>Total:</strong> ${{item.total}}</p>
+                        <div class="mb-3">
+                            <label for="comentarios" class="form-label">Comentarios (opcional)</label>
+                            <textarea class="form-control" name="comentarios" rows="3" 
+                                      placeholder="Comentarios sobre la aprobación..."></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Aprobar Compra</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Rechazar -->
+    <div class="modal fade" id="rechazarModal{{item.id}}" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Rechazar Compra #{{item.id}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <form action="{{ url_for('compra.rechazar', id=item.id) }}" method="POST">
+                    <div class="modal-body">
+                        <p><strong>Usuario:</strong> {{item.usuario.nombre}}</p>
+                        <p><strong>Producto:</strong> {{item.producto.nombre}}</p>
+                        <p><strong>Total:</strong> ${{item.total}}</p>
+                        <div class="mb-3">
+                            <label for="comentarios" class="form-label">Motivo del rechazo</label>
+                            <textarea class="form-control" name="comentarios" rows="3" required
+                                      placeholder="Explica el motivo del rechazo..."></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-danger">Rechazar Compra</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</table>
+
+{% if not compras_pendientes %}
+<div class="alert alert-info">
+    <i class="fas fa-info-circle"></i> No hay compras pendientes de aprobación.
+</div>
+{% endif %}
+
+{% endblock %}

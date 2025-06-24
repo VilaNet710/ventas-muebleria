@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Muebles Met Vil - Sistema de Ventas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Header con Login -->
+    <header class="header-top">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-8">
+                    <div class="contact-info">
+                        <span>📞 +591 78789828</span>
+                        <span>✉️ info@mueblesmetvil.com</span>
+                    </div>
+                </div>
+                <div class="col-md-4 text-end">
+                    <div class="login-area">
+                        <a href="{{ url_for('login') }}" class="btn-login">
+                            👤 Acceder al Sistema
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Muebles Met Vil" class="logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#historia">Historia</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#productos">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contacto">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-section">
+        <div class="hero-overlay">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="hero-content">
+                            <h1 class="hero-title">Muebles Met Vil</h1>
+                            <h2 class="hero-subtitle">Calidad y Elegancia para tu Hogar</h2>
+                            <p class="hero-description">
+                                Desde 1995, creamos muebles únicos que transforman espacios y crean hogares llenos de estilo y confort.
+                            </p>
+                            <div class="hero-buttons">
+                                <a href="#productos" class="btn btn-primary btn-lg me-3">Ver Catálogo</a>
+                                <a href="{{ url_for('login') }}" class="btn btn-outline-light btn-lg">Sistema de Ventas</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="hero-image">
+                            <img src="{{ url_for('static', filename='images/hero-muebles.png') }}" alt="Muebles de calidad" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Historia Section -->
+    <section id="historia" class="historia-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="section-title">Nuestra Historia</h2>
+                    <div class="section-divider"></div>
+                </div>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="historia-content">
+                        <h3>Más de 25 años creando hogares</h3>
+                        <p>
+                            Muebles Met Vil nació en 1995 con la visión de crear muebles de alta calidad que perduren en el tiempo. 
+                            Comenzamos como un pequeño taller familiar y hoy somos una empresa reconocida en el sector mobiliario.
+                        </p>
+                        <p>
+                            Nuestro compromiso con la excelencia nos ha llevado a expandir nuestras operaciones, 
+                            incorporando tecnología de vanguardia sin perder el toque artesanal que nos caracteriza.
+                        </p>
+                        <div class="stats-row">
+                            <div class="stat-item">
+                                <h4>25+</h4>
+                                <p>Años de experiencia</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>10,000+</h4>
+                                <p>Clientes satisfechos</p>
+                            </div>
+                            <div class="stat-item">
+                                <h4>500+</h4>
+                                <p>Diseños únicos</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="historia-images">
+                        <img src="{{ url_for('static', filename='images/taller-1995.png') }}" alt="Taller de muebles 1995" class="img-fluid mb-3">
+                        <img src="{{ url_for('static', filename='images/showroom-actual.png') }}" alt="Showroom actual" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Productos Section -->
+    <section id="productos" class="productos-section py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="section-title">Nuestros Productos</h2>
+                    <div class="section-divider"></div>
+                    <p class="section-description">Descubre nuestra amplia gama de muebles para cada espacio de tu hogar</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="producto-card">
+                        <img src="{{ url_for('static', filename='images/productos/salas.png') }}" alt="Salas" class="img-fluid">
+                        <div class="producto-info">
+                            <h4>Salas</h4>
+                            <p>Sofás, sillones y mesas de centro que combinan comodidad y estilo.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="producto-card">
+                        <img src="{{ url_for('static', filename='images/productos/comedores.png') }}" alt="Comedores" class="img-fluid">
+                        <div class="producto-info">
+                            <h4>Comedores</h4>
+                            <p>Mesas y sillas elegantes para compartir momentos especiales.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="producto-card">
+                        <img src="{{ url_for('static', filename='images/productos/dormitorios.png') }}" alt="Dormitorios" class="img-fluid">
+                        <div class="producto-info">
+                            <h4>Dormitorios</h4>
+                            <p>Camas, armarios y cómodas para tu descanso perfecto.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="producto-card">
+                        <img src="{{ url_for('static', filename='images/productos/oficina.png') }}" alt="Oficina" class="img-fluid">
+                        <div class="producto-info">
+                            <h4>Oficina</h4>
+                            <p>Escritorios y sillas ergonómicas para tu espacio de trabajo.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="producto-card">
+                        <img src="{{ url_for('static', filename='images/productos/cocina.png') }}" alt="Cocina" class="img-fluid">
+                        <div class="producto-info">
+                            <h4>Cocina</h4>
+                            <p>Muebles funcionales y modernos para tu cocina.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="producto-card">
+                        <img src="{{ url_for('static', filename='images/productos/decoracion.png') }}" alt="Decoración" class="img-fluid">
+                        <div class="producto-info">
+                            <h4>Decoración</h4>
+                            <p>Accesorios y elementos decorativos únicos.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="footer-section">
+                        <h5>Muebles Met Vil</h5>
+                        <p>Creando hogares únicos desde 1995. Calidad, diseño y durabilidad en cada pieza.</p>
+                        <div class="social-links">
+                            <a href="#">📘</a>
+                            <a href="#">📷</a>
+                            <a href="#">🐦</a>
+                            <a href="#">📺</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-section">
+                        <h6>Productos</h6>
+                        <ul class="footer-links">
+                            <li><a href="#">Salas</a></li>
+                            <li><a href="#">Comedores</a></li>
+                            <li><a href="#">Dormitorios</a></li>
+                            <li><a href="#">Oficina</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <div class="footer-section">
+                        <h6>Servicios</h6>
+                        <ul class="footer-links">
+                            <li><a href="#">Diseño personalizado</a></li>
+                            <li><a href="#">Entrega a domicilio</a></li>
+                            <li><a href="#">Instalación</a></li>
+                            <li><a href="#">Garantía</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="footer-section">
+                        <h6 id="contacto">Contacto</h6>
+                        <div class="contact-info">
+                            <p>📍 Calle 123 #45-67, Ciudad</p>
+                            <p>📞 +591 78789828</p>
+                            <p>✉️ info@mueblesmetvil.com</p>
+                            <p>🕒 Lun - Sáb: 8:00 AM - 6:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="footer-divider">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p class="footer-copyright">
+                        &copy; 2024 Muebles Met Vil. Todos los derechos reservados.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

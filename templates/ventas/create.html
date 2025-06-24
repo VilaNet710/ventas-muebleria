@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %} VENTAS | CREATE {% endblock %}
+
+{% block content %}
+
+<h1>Registro de venta</h1>
+
+<form action="{{ url_for('venta.create') }}" method="POST">
+    <div class="mb-3">
+        <label for="" class="form-label">Cliente</label>
+        <input type="text" class="form-control" name="cliente" required>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Producto</label>
+        <select name="producto_id" class="form-control" required>
+            <option value="">Seleccionar producto</option>
+            {% for producto in productos %}
+            <option value="{{producto.id}}">{{producto.nombre}} - Stock: {{producto.stock}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Cantidad</label>
+        <input type="number" class="form-control" name="cantidad" required>
+    </div>
+    <div class="mb-3">
+        <label for="" class="form-label">Precio Unitario</label>
+        <input type="number" step="0.01" class="form-control" name="precio_unitario" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Registrar</button>
+</form>
+
+{% endblock %}

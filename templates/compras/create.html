@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block title %} COMPRAS | CREATE {% endblock %}
+
+{% block content %}
+
+<h1>Nueva Solicitud de Compra</h1>
+
+<div class="alert alert-info">
+    <h6><i class="fas fa-info-circle"></i> Proceso de Compra:</h6>
+    <ol class="mb-0">
+        <li><strong>Solicitas la compra</strong> - Completa este formulario</li>
+        <li><strong>Esperamos aprobación</strong> - El administrador revisará tu solicitud</li>
+        <li><strong>Generas tu factura</strong> - Si es aprobada, podrás descargar tu factura PDF</li>
+    </ol>
+</div>
+
+<form action="{{ url_for('compra.create') }}" method="POST">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="proveedor_id" class="form-label">Proveedor</label>
+                <select name="proveedor_id" class="form-control" required>
+                    <option value="">Seleccionar proveedor</option>
+                    {% for proveedor in proveedores %}
+                    <option value="{{proveedor.id}}">{{proveedor.nombre}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="producto_id" class="form-label">Producto</label>
+                <select name="producto_id" class="form-control" required id="producto_select">
+                    <option value="">Seleccionar producto</option>
+                    {% for producto in productos %}
+                    <option value="{{producto.id}}" data-precio="{{producto.precio}}">
+                        {{producto.nombre}} - Stock: {{producto.stock}} - ${{producto.precio}}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="cantidad" class="form-label">Cantidad</label>
+                <input type="number" class="form-control" name="cantidad" required min="1" id="cantidad_input">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="precio_unitario" class="form-label">Precio Unitario</label>
+                <input type="number" step="0.01" class="form-control" name="precio_unitario" required id="precio_input" readonly>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label class="form-label">Total Estimado</label>
+                <input type="text" class="form-control" id="total_display" readonly placeholder="$0.00">
+            </div>
+        </div>
+    </div>
+    
+    <div class="alert alert-warning">
+        <strong>Importante:</strong> Una vez enviada la solicitud, deberás esperar la aprobación del administrador para poder generar tu factura.
+    </div>
+    
+    <button type="submit" class="btn btn-primary">
+        <i class="fas fa-paper-plane"></i> Enviar Solicitud de Compra
+    </button>
+    <a href="{{ url_for('compra.index') }}" class="btn btn-secondary">Cancelar</a>
+</form>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const productoSelect = document.getElementById('producto_select');
+    const cantidadInput = document.getElementById('cantidad_input');
+    const precioInput = document.getElementById('precio_input');
+    const totalDisplay = document.getElementById('total_display');
+    
+    function actualizarPrecio() {
+        const selectedOption = productoSelect.options[productoSelect.selectedIndex];
+        if (selectedOption.value) {
+            const precio = parseFloat(selectedOption.dataset.precio);
+            precioInput.value = precio.toFixed(2);
+            calcularTotal();
+        } else {
+            precioInput.value = '';
+            totalDisplay.value = '';
+        }
+    }
+    
+    function calcularTotal() {
+        const cantidad = parseFloat(cantidadInput.value) || 0;
+        const precio = parseFloat(precioInput.value) || 0;
+        const total = cantidad * precio;
+        totalDisplay.value = '$' + total.toFixed(2);
+    }
+    
+    productoSelect.addEventListener('change', actualizarPrecio);
+    cantidadInput.addEventListener('input', calcularTotal);
+});
+</script>
+
+{% endblock %}

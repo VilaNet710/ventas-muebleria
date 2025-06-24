@@ -1,0 +1,35 @@
+<!-- Widget para incluir en el dashboard -->
+<div class="card border-warning mb-4">
+    <div class="card-header bg-warning text-dark">
+        <h5 class="mb-0">
+            <i class="fas fa-clock"></i> Gestión de Compras
+        </h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-6">
+                <h6>Compras Pendientes</h6>
+                <div class="d-flex align-items-center mb-3">
+                    <span class="badge bg-warning fs-6 me-2">{{ compras_pendientes_count }}</span>
+                    <span>Esperando aprobación</span>
+                </div>
+                {% if compras_pendientes_count > 0 %}
+                <a href="{{ url_for('compra.pendientes') }}" class="btn btn-warning btn-sm">
+                    <i class="fas fa-check"></i> Aprobar Compras
+                </a>
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <h6>Acciones Rápidas</h6>
+                <div class="d-grid gap-2">
+                    <a href="{{ url_for('compra.index') }}" class="btn btn-outline-primary btn-sm">
+                        <i class="fas fa-list"></i> Ver Todas las Compras
+                    </a>
+                    <a href="{{ url_for('reporte.reporte_ventas') }}" class="btn btn-outline-success btn-sm">
+                        <i class="fas fa-file-pdf"></i> Generar Reporte PDF
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

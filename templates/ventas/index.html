@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %} VENTAS {% endblock %}
+
+{% block content %}
+
+<h1>Lista de ventas</h1>
+
+<div class="row mb-3">
+    <div class="col-md-12">
+        <a href="{{ url_for('venta.create' )}}" class="btn btn-success ms-3">Nueva Venta Directa</a>
+        <a href="{{ url_for('reporte.reporte_ventas') }}" class="btn btn-info ms-2">
+            <i class="fas fa-file-pdf"></i> Generar Reporte PDF
+        </a>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Fecha</th>
+        <th>Cliente</th>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Total</th>
+        <th>Tipo</th>
+        <th>Origen</th>
+        <th>Acciones</th>
+    </tr>
+    {% for item in ventas %}
+    <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.fecha.strftime('%Y-%m-%d')}}</td>
+        <td>{{item.cliente}}</td>
+        <td>{{item.producto.nombre if item.producto else 'N/A'}}</td>
+        <td>{{item.cantidad}}</td>
+        <td>${{item.total}}</td>
+        <td>
+            {% if item.tipo_venta == 'directa' %}
+            <span class="badge bg-primary">Directa</span>
+            {% else %}
+            <span class="badge bg-success">Por Compra</span>
+            {% endif %}
+        </td>
+        <td>
+            {% if item.compra_id %}
+            <a href="{{ url_for('compra.index') }}" class="btn btn-sm btn-outline-info">
+                Compra #{{item.compra_id}}
+            </a>
+            {% else %}
+            <span class="text-muted">Manual</span>
+            {% endif %}
+        </td>
+        <td>
+            <a href="{{ url_for('venta.detalle', id=item.id)}}" class="btn btn-info btn-sm">
+                <i class="fas fa-eye"></i> Ver
+            </a>
+            {% if item.tipo_venta == 'directa' %}
+            <a href="{{ url_for('venta.edit', id=item.id)}}" class="btn btn-warning btn-sm">Editar</a>
+            <a href="{{ url_for('venta.delete',id=item.id)}}" class="btn btn-danger btn-sm" 
+               onclick="return confirm('¿Estás seguro?')">Eliminar</a>
+            {% else %}
+            <span class="badge bg-secondary">Auto-generada</span>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<div class="alert alert-info mt-4">
+    <h6><i class="fas fa-info-circle"></i> Información sobre tipos de ventas:</h6>
+    <ul class="mb-0">
+        <li><strong>Ventas Directas:</strong> Registradas manualmente por administradores</li>
+        <li><strong>Ventas por Compras:</strong> Generadas automáticamente cuando se aprueban compras de usuarios</li>
+        <li><strong>Reportes PDF:</strong> Incluyen ambos tipos de ventas con el logo de la empresa</li>
+    </ul>
+</div>
+
+{% endblock %}

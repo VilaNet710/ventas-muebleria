@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+
+{% block title %} COMPRAS {% endblock %}
+
+{% block content %}
+
+<h1>
+    {% if session.tipo == 'usuario' %}
+    Mis Compras
+    {% else %}
+    Lista de compras
+    {% endif %}
+</h1>
+
+{% if session.tipo == 'usuario' %}
+<a href="{{ url_for('compra.create' )}}" class="btn btn-success mb-3">Nueva Solicitud de Compra</a>
+{% endif %}
+
+{% if session.tipo == 'administrador' %}
+<div class="row mb-3">
+    <div class="col-md-6">
+        <a href="{{ url_for('compra.pendientes' )}}" class="btn btn-warning">
+            <i class="fas fa-clock"></i> Compras Pendientes
+        </a>
+    </div>
+</div>
+{% endif %}
+
+<table class="table table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Fecha</th>
+        {% if session.tipo == 'administrador' %}
+        <th>Usuario</th>
+        {% endif %}
+        <th>Proveedor</th>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Total</th>
+        <th>Estado</th>
+        <th>Acciones</th>
+    </tr>
+    {% for item in compras %}
+    <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.fecha.strftime('%Y-%m-%d')}}</td>
+        {% if session.tipo == 'administrador' %}
+        <td>{{item.usuario.nombre if item.usuario else 'N/A'}}</td>
+        {% endif %}
+        <td>{{item.proveedor.nombre if item.proveedor else 'N/A'}}</td>
+        <td>{{item.producto.nombre if item.producto else 'N/A'}}</td>
+        <td>{{item.cantidad}}</td>
+        <td>${{item.total}}</td>
+        <td>
+            {% if item.estado == 'pendiente' %}
+            <span class="badge bg-warning">Pendiente</span>
+            {% elif item.estado == 'aprobada' %}
+            <span class="badge bg-success">Aprobada</span>
+            {% elif item.estado == 'rechazada' %}
+            <span class="badge bg-danger">Rechazada</span>
+            {% endif %}
+        </td>
+        <td>
+            {% if item.estado == 'aprobada' %}
+            <a href="{{ url_for('compra.generar_factura', id=item.id)}}" class="btn btn-primary btn-sm">
+                <i class="fas fa-file-pdf"></i> Factura
+            </a>
+            {% endif %}
+            
+            {% if session.tipo == 'usuario' and item.estado == 'pendiente' and item.usuario_id == session.user_id %}
+            <a href="{{ url_for('compra.edit', id=item.id)}}" class="btn btn-warning btn-sm">Editar</a>
+            <a href="{{ url_for('compra.delete',id=item.id)}}" class="btn btn-danger btn-sm" 
+               onclick="return confirm('¿Estás seguro?')">Eliminar</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<!-- Después de la tabla, agregar información adicional para usuarios -->
+{% if session.tipo == 'usuario' %}
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h6><i class="fas fa-question-circle"></i> ¿Cómo funciona el proceso?</h6>
+            </div>
+            <div class="card-body">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="badge bg-primary">1</span>
+                        <span>Envías tu solicitud de compra</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="badge bg-warning">2</span>
+                        <span>El administrador revisa y aprueba</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="badge bg-success">3</span>
+                        <span>Descargas tu factura PDF</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h6><i class="fas fa-chart-pie"></i> Resumen de tus Compras</h6>
+            </div>
+            <div class="card-body">
+                {% set pendientes = compras|selectattr("estado", "equalto", "pendiente")|list|length %}
+                {% set aprobadas = compras|selectattr("estado", "equalto", "aprobada")|list|length %}
+                {% set rechazadas = compras|selectattr("estado", "equalto", "rechazada")|list|length %}
+                
+                <div class="mb-2">
+                    <span class="badge bg-warning">{{ pendientes }}</span> Pendientes
+                </div>
+                <div class="mb-2">
+                    <span class="badge bg-success">{{ aprobadas }}</span> Aprobadas
+                </div>
+                <div class="mb-2">
+                    <span class="badge bg-danger">{{ rechazadas }}</span> Rechazadas
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.timeline-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.timeline-item .badge {
+    margin-right: 10px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>
+{% endif %}
+
+{% endblock %}

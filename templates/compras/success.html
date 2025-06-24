@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %} SOLICITUD ENVIADA {% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-success">
+                <div class="card-header bg-success text-white text-center">
+                    <h4><i class="fas fa-check-circle"></i> Solicitud Enviada Exitosamente</h4>
+                </div>
+                <div class="card-body text-center">
+                    <div class="mb-4">
+                        <i class="fas fa-paper-plane fa-4x text-success"></i>
+                    </div>
+                    
+                    <h5>¡Tu solicitud de compra ha sido enviada!</h5>
+                    <p class="text-muted">Número de solicitud: <strong>#{{ compra_id }}</strong></p>
+                    
+                    <div class="alert alert-info">
+                        <h6><i class="fas fa-info-circle"></i> ¿Qué sigue ahora?</h6>
+                        <ol class="text-start mb-0">
+                            <li><strong>Revisión:</strong> El administrador revisará tu solicitud</li>
+                            <li><strong>Notificación:</strong> Recibirás una respuesta (aprobada/rechazada)</li>
+                            <li><strong>Factura:</strong> Si es aprobada, podrás descargar tu factura PDF</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <a href="{{ url_for('compra.index') }}" class="btn btn-primary">
+                            <i class="fas fa-list"></i> Ver Mis Compras
+                        </a>
+                        <a href="{{ url_for('compra.create') }}" class="btn btn-outline-success">
+                            <i class="fas fa-plus"></i> Nueva Solicitud
+                        </a>
+                        <a href="{{ url_for('dashboard') }}" class="btn btn-outline-secondary">
+                            <i class="fas fa-home"></i> Ir al Dashboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+
+{% block title %} PRODUCTOS {% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="section-title text-center">
+                <i class="fas fa-couch"></i> Catálogo de Productos
+            </h1>
+        </div>
+    </div>
+
+    {% if session.tipo == 'administrador' %}
+    <div class="row mb-4">
+        <div class="col-12 text-center">
+            <a href="{{ url_for('producto.create' )}}" class="btn btn-success btn-lg glow-effect">
+                <i class="fas fa-plus-circle"></i> Nuevo Producto
+            </a>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="row">
+        {% for item in productos %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="producto-card">
+                <div class="producto-image">
+                    <img src="{{ item.get_imagen_url() }}" alt="{{ item.nombre }}" class="img-fluid">
+                    <div class="producto-overlay">
+                        {% if session.tipo == 'administrador' %}
+                        <a href="{{ url_for('producto.edit', id=item.id)}}" class="btn btn-warning btn-sm">
+                            <i class="fas fa-edit"></i> Editar
+                        </a>
+                        <a href="{{ url_for('producto.delete',id=item.id)}}" class="btn btn-danger btn-sm" 
+                           onclick="return confirm('¿Estás seguro?')">
+                            <i class="fas fa-trash"></i> Eliminar
+                        </a>
+                        {% elif session.tipo == 'usuario' %}
+                        {% if item.stock > 0 %}
+                        <a href="/compras/create?producto_id={{item.id}}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-shopping-cart"></i> Comprar
+                        </a>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="producto-info">
+                    <h4>{{ item.nombre }}</h4>
+                    <div class="precio">${{ "%.2f"|format(item.precio) }}</div>
+                    <div class="stock">
+                        {% if item.stock > 0 %}
+                        <span class="badge bg-success">
+                            <i class="fas fa-check"></i> Stock: {{ item.stock }}
+                        </span>
+                        {% else %}
+                        <span class="badge bg-danger">
+                            <i class="fas fa-times"></i> Agotado
+                        </span>
+                        {% endif %}
+                    </div>
+                    <div class="categoria mb-2">
+                        <span class="badge" style="background: linear-gradient(45deg, var(--primary-brown), var(--secondary-brown));">
+                            {{ item.categoria|title if item.categoria else 'Sin categoría' }}
+                        </span>
+                    </div>
+                    <p>{{ item.descripcion[:100] }}{% if item.descripcion|length > 100 %}...{% endif %}</p>
+                    
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        {% if session.tipo == 'usuario' and item.stock > 0 %}
+                        <a href="/compras/create?producto_id={{item.id}}" class="btn btn-primary btn-sm">
+                            <i class="fas fa-shopping-cart"></i> Comprar Ahora
+                        </a>
+                        {% endif %}
+                        
+                        <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#detalleModal{{item.id}}">
+                            <i class="fas fa-eye"></i> Ver Detalles
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Detalles -->
+        <div class="modal fade" id="detalleModal{{item.id}}" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content" style="border-radius: 20px;">
+                    <div class="modal-header" style="background: linear-gradient(45deg, var(--primary-brown), var(--secondary-brown)); color: white; border-radius: 20px 20px 0 0;">
+                        <h5 class="modal-title">
+                            <i class="fas fa-info-circle"></i> {{ item.nombre }}
+                        </h5>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="{{ item.get_imagen_url() }}" alt="{{ item.nombre }}" 
+                                     class="img-fluid rounded" style="border: 3px solid var(--primary-green);">
+                            </div>
+                            <div class="col-md-6">
+                                <h4 class="text-primary">{{ item.nombre }}</h4>
+                                <p class="precio" style="font-size: 2rem;">${{ "%.2f"|format(item.precio) }}</p>
+                                <p><strong>Categoría:</strong> {{ item.categoria|title if item.categoria else 'Sin categoría' }}</p>
+                                <p><strong>Stock:</strong> 
+                                    {% if item.stock > 0 %}
+                                    <span class="badge bg-success">{{ item.stock }} disponibles</span>
+                                    {% else %}
+                                    <span class="badge bg-danger">Agotado</span>
+                                    {% endif %}
+                                </p>
+                                <p><strong>Descripción:</strong></p>
+                                <p>{{ item.descripcion if item.descripcion else 'Sin descripción disponible' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        {% if session.tipo == 'usuario' and item.stock > 0 %}
+                        <a href="/compras/create?producto_id={{item.id}}" class="btn btn-primary">
+                            <i class="fas fa-shopping-cart"></i> Comprar Producto
+                        </a>
+                        {% endif %}
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    {% if not productos %}
+    <div class="row">
+        <div class="col-12">
+            <div class="alert alert-info text-center">
+                <i class="fas fa-info-circle fa-3x mb-3"></i>
+                <h4>No hay productos registrados</h4>
+                <p>Aún no se han agregado productos al catálogo.</p>
+                {% if session.tipo == 'administrador' %}
+                <a href="{{ url_for('producto.create' )}}" class="btn btn-success">
+                    <i class="fas fa-plus"></i> Agregar Primer Producto
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if session.tipo == 'usuario' %}
+    <div class="row mt-5">
+        <div class="col-12">
+            <div class="alert alert-info">
+                <h6><i class="fas fa-info-circle"></i> Información para Usuarios:</h6>
+                <ul class="mb-0">
+                    <li>Haz clic en "Comprar" para solicitar la compra de un producto</li>
+                    <li>Tu solicitud será revisada por un administrador</li>
+                    <li>Una vez aprobada, podrás descargar tu factura en PDF</li>
+                    <li>Puedes ver el estado de tus compras en "Mis Compras"</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock %}

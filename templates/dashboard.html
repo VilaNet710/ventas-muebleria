@@ -1,0 +1,299 @@
+{% extends 'base.html' %}
+
+{% block title %} DASHBOARD - MUEBLES MET VIL {% endblock %}
+
+{% block content %}
+
+<div class="dashboard-header mb-4">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <h1 class="dashboard-title">Panel de Control</h1>
+            <p class="dashboard-subtitle">Sistema de Gestión - Muebles Met Vil</p>
+            <div class="badges">
+                <span class="badge bg-primary">{{ session.tipo|title }}</span>
+                {% if session.super_admin %}
+                <span class="badge bg-warning">Super Administrador</span>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-4 text-end">
+            <div class="user-info">
+                <span class="welcome-text">Bienvenido, {{ session.user }}</span>
+                <a href="{{ url_for('logout') }}" class="btn btn-outline-danger btn-sm ms-2">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if session.tipo == 'administrador' %}
+<!-- Dashboard para Administrador -->
+<div class="row">
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="dashboard-card card-usuarios">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="card-info">
+                        <h5>Usuarios</h5>
+                        <p>Gestionar usuarios del sistema</p>
+                        <a href="/usuarios/" class="btn btn-sm btn-primary">Ver todos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="dashboard-card card-productos">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="card-icon">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <div class="card-info">
+                        <h5>Productos</h5>
+                        <p>Catálogo de muebles</p>
+                        <a href="/productos/" class="btn btn-sm btn-primary">Ver todos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="dashboard-card card-ventas">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="card-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="card-info">
+                        <h5>Ventas</h5>
+                        <p>Registro de ventas</p>
+                        <a href="/ventas/" class="btn btn-sm btn-primary">Ver todas</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="dashboard-card card-proveedores">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="card-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <div class="card-info">
+                        <h5>Proveedores</h5>
+                        <p>Gestión de proveedores</p>
+                        <a href="/proveedores/" class="btn btn-sm btn-primary">Ver todos</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Widget de Compras Pendientes -->
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card border-warning">
+            <div class="card-header bg-warning text-dark">
+                <h5 class="mb-0">
+                    <i class="fas fa-exclamation-triangle"></i> 
+                    Compras Pendientes de Aprobación
+                    <span class="badge bg-danger ms-2" id="compras-count">{{ compras_pendientes_count or 0 }}</span>
+                </h5>
+            </div>
+            <div class="card-body">
+                {% if compras_pendientes_count and compras_pendientes_count > 0 %}
+                <div class="alert alert-warning">
+                    <strong>¡Atención!</strong> Hay {{ compras_pendientes_count }} compra(s) esperando tu aprobación.
+                    Los usuarios no podrán generar sus facturas hasta que apruebes sus solicitudes.
+                </div>
+                <div class="d-flex gap-2">
+                    <a href="{{ url_for('compra.pendientes') }}" class="btn btn-warning">
+                        <i class="fas fa-clock"></i> Ver Compras Pendientes ({{ compras_pendientes_count }})
+                    </a>
+                    <a href="{{ url_for('compra.index') }}" class="btn btn-outline-primary">
+                        <i class="fas fa-list"></i> Ver Todas las Compras
+                    </a>
+                </div>
+                {% else %}
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle"></i> No hay compras pendientes de aprobación.
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if session.super_admin %}
+<div class="row">
+    <div class="col-lg-6 mb-4">
+        <div class="dashboard-card card-super-admin">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="card-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div class="card-info">
+                        <h5>Administradores</h5>
+                        <p>Gestión de administradores</p>
+                        <a href="/administradores/" class="btn btn-sm btn-warning">Gestionar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 mb-4">
+        <div class="alert alert-warning">
+            <h6><i class="fas fa-crown"></i> Privilegios de Super Administrador</h6>
+            <ul class="mb-0">
+                <li>Crear nuevos administradores</li>
+                <li>Eliminar administradores</li>
+                <li>Designar permisos especiales</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="row">
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-chart-line"></i> Resumen de Ventas</h5>
+            </div>
+            <div class="card-body">
+                <p>Aquí puedes ver un resumen de las ventas recientes y estadísticas importantes.</p>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h4>$125,000</h4>
+                        <p>Ventas del mes</p>
+                    </div>
+                    <div class="stat-item">
+                        <h4>45</h4>
+                        <p>Productos vendidos</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-tasks"></i> Acciones Rápidas</h5>
+            </div>
+            <div class="card-body">
+                <div class="quick-actions">
+                    <a href="/productos/create" class="btn btn-success mb-2 w-100">
+                        <i class="fas fa-plus"></i> Agregar Producto
+                    </a>
+                    <a href="/ventas/create" class="btn btn-info mb-2 w-100">
+                        <i class="fas fa-shopping-cart"></i> Nueva Venta
+                    </a>
+                    {% if session.super_admin %}
+                    <a href="/administradores/create" class="btn btn-warning mb-2 w-100">
+                        <i class="fas fa-user-plus"></i> Nuevo Administrador
+                    </a>
+                    {% endif %}
+                </div>
+                <p class="text-muted mt-3"><small>* Los administradores no pueden realizar compras</small></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% else %}
+<!-- Dashboard para Usuario -->
+<div class="row">
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="dashboard-card card-productos">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="card-icon">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <div class="card-info">
+                        <h5>Productos</h5>
+                        <p>Ver catálogo de muebles</p>
+                        <a href="/productos/" class="btn btn-sm btn-primary">Ver catálogo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="dashboard-card card-usuarios">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="card-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="card-info">
+                        <h5>Usuarios</h5>
+                        <p>Ver lista de usuarios</p>
+                        <a href="/usuarios/" class="btn btn-sm btn-primary">Ver usuarios</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4 col-md-6 mb-4">
+        <div class="dashboard-card card-compras">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="card-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div class="card-info">
+                        <h5>Mis Compras</h5>
+                        <p>Realizar compras</p>
+                        <a href="/compras/" class="btn btn-sm btn-primary">Ver compras</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-info-circle"></i> Información para Usuarios</h5>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <h6>Como usuario puedes:</h6>
+                    <ul class="mb-0">
+                        <li>Ver el catálogo de productos</li>
+                        <li>Realizar compras de productos</li>
+                        <li>Ver la lista de usuarios registrados</li>
+                    </ul>
+                </div>
+                <div class="alert alert-warning">
+                    <h6>Restricciones:</h6>
+                    <ul class="mb-0">
+                        <li>No puedes agregar, editar o eliminar productos</li>
+                        <li>No puedes editar o eliminar otros usuarios</li>
+                        <li>No tienes acceso al módulo de ventas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

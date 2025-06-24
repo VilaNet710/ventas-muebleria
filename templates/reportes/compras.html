@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block title %} ESTADÍSTICAS DE COMPRAS {% endblock %}
+
+{% block content %}
+
+<h1>Estadísticas de Compras</h1>
+
+<div class="row mb-4">
+    <div class="col-lg-4 col-md-6 mb-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <i class="fas fa-clock fa-2x text-warning mb-2"></i>
+                <h3 class="text-warning">{{compras_pendientes}}</h3>
+                <p class="card-text">Compras Pendientes</p>
+                <a href="{{ url_for('compra.pendientes') }}" class="btn btn-warning btn-sm">Ver Pendientes</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4 col-md-6 mb-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <i class="fas fa-check fa-2x text-success mb-2"></i>
+                <h3 class="text-success">{{compras_aprobadas}}</h3>
+                <p class="card-text">Compras Aprobadas</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4 col-md-6 mb-3">
+        <div class="card text-center">
+            <div class="card-body">
+                <i class="fas fa-shopping-cart fa-2x text-primary mb-2"></i>
+                <h3 class="text-primary">{{todas_compras|length}}</h3>
+                <p class="card-text">Total de Compras</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header">
+        <h5>Últimas Compras</h5>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Usuario</th>
+                    <th>Producto</th>
+                    <th>Total</th>
+                    <th>Estado</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for compra in todas_compras[-10:] %}
+                <tr>
+                    <td>{{compra.id}}</td>
+                    <td>{{compra.usuario.nombre if compra.usuario else 'N/A'}}</td>
+                    <td>{{compra.producto.nombre if compra.producto else 'N/A'}}</td>
+                    <td>${{compra.total}}</td>
+                    <td>
+                        {% if compra.estado == 'pendiente' %}
+                        <span class="badge bg-warning">Pendiente</span>
+                        {% elif compra.estado == 'aprobada' %}
+                        <span class="badge bg-success">Aprobada</span>
+                        {% elif compra.estado == 'rechazada' %}
+                        <span class="badge bg-danger">Rechazada</span>
+                        {% endif %}
+                    </td>
+                    <td>{{compra.fecha.strftime('%Y-%m-%d')}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

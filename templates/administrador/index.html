@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %} ADMINISTRADORES {% endblock %}
+
+{% block content %}
+
+<h1>Lista de administradores</h1>
+
+{% if session.super_admin %}
+<a href="{{ url_for('administrador.create' )}}" class="btn btn-success mb-3">Nuevo Administrador</a>
+{% endif %}
+
+<table class="table table-striped">
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th>Tipo</th>
+        <th>Acciones</th>
+    </tr>
+    {% for item in administradores %}
+    <tr>
+        <td>{{item.id}}</td>
+        <td>{{item.nombre}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.telefono}}</td>
+        <td>
+            {% if item.super_admin %}
+            <span class="badge bg-warning">Super Admin</span>
+            {% else %}
+            <span class="badge bg-primary">Admin</span>
+            {% endif %}
+        </td>
+        <td>
+            {% if session.super_admin or session.user_id == item.id %}
+            <a href="{{ url_for('administrador.edit', id=item.id)}}" class="btn btn-warning btn-sm">Editar</a>
+            {% endif %}
+            {% if session.super_admin and not item.super_admin %}
+            <a href="{{ url_for('administrador.delete',id=item.id)}}" class="btn btn-danger btn-sm" 
+               onclick="return confirm('¿Estás seguro de eliminar este administrador?')">Eliminar</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+{% if not session.super_admin %}
+<div class="alert alert-info mt-4">
+    <strong>Información:</strong> Solo el Super Administrador puede crear nuevos administradores y eliminar administradores existentes.
+</div>
+{% endif %}
+
+{% endblock %}

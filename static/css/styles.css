@@ -1,0 +1,1680 @@
+/* 
+================================================================================
+🏛️ SISTEMA DE ESTILOS ULTRA LUJOSO - MUEBLES MET VIL
+================================================================================
+Diseño Premium con tonos profundos y opulentos que evocan exclusividad,
+sofisticación y lujo absoluto. Inspirado en los salones más elegantes del mundo.
+
+🎨 PALETA DE LUJO PROFUNDO:
+- Azul Marino Imperial: #0B1426, #1A2B4C, #2C4A7A
+- Carbón Elegante: #1C1C1E, #2C2C2E, #3A3A3C
+- Ciruela Real: #4A1A4A, #6B2C6B, #8B3E8B
+- Verde Bosque Profundo: #0D2818, #1A4A2E, #2E6B47
+- Oro Sutil: #B8860B, #DAA520, #F4A460
+- Bronce Antiguo: #8B4513, #A0522D, #CD853F
+- Borgoña Imperial: #4A0E0E, #722F37, #8B0000
+- Crema Elegante: #F5F5DC, #FFF8DC, #FFFACD
+
+🌟 EFECTOS DE LUJO:
+- Texturas de lino y terciopelo
+- Sombras profundas y volumétricas
+- Degradados sutiles y elegantes
+- Efectos de oro y bronce
+- Tipografía serif elegante
+- Glassmorphism premium
+================================================================================
+*/
+
+/* ============================================================================
+   💎 VARIABLES CSS DE LUJO ABSOLUTO
+============================================================================ */
+:root {
+  /* 🌊 Azul Marino Imperial */
+  --azul-abismo: #0b1426;
+  --azul-profundo: #1a2b4c;
+  --azul-real: #2c4a7a;
+  --azul-acero: #4a6fa5;
+  --azul-cristal: #6b8ec7;
+
+  /* ⚫ Carbón Elegante */
+  --carbon-absoluto: #0a0a0a;
+  --carbon-profundo: #1c1c1e;
+  --carbon-medio: #2c2c2e;
+  --carbon-claro: #3a3a3c;
+  --carbon-plata: #5a5a5c;
+
+  /* 🍇 Ciruela Real */
+  --ciruela-imperial: #2d1b2e;
+  --ciruela-profunda: #4a1a4a;
+  --ciruela-media: #6b2c6b;
+  --ciruela-clara: #8b3e8b;
+  --ciruela-lavanda: #b19cd9;
+
+  /* 🌲 Verde Bosque Profundo */
+  --bosque-nocturno: #0d2818;
+  --bosque-profundo: #1a4a2e;
+  --bosque-medio: #2e6b47;
+  --bosque-esmeralda: #4a8b3a;
+  --bosque-jade: #6ba85a;
+
+  /* 🥇 Oro Sutil */
+  --oro-antiguo: #8b6914;
+  --oro-clasico: #b8860b;
+  --oro-brillante: #daa520;
+  --oro-champagne: #f4a460;
+  --oro-crema: #fff8dc;
+
+  /* 🥉 Bronce Antiguo */
+  --bronce-oscuro: #654321;
+  --bronce-medio: #8b4513;
+  --bronce-claro: #a0522d;
+  --bronce-dorado: #cd853f;
+  --bronce-arena: #deb887;
+
+  /* 🍷 Borgoña Imperial */
+  --borgona-noche: #2d0a0a;
+  --borgona-profundo: #4a0e0e;
+  --borgona-medio: #722f37;
+  --borgona-rubi: #8b0000;
+  --borgona-rosa: #cd5c5c;
+
+  /* 🤍 Cremas y Neutros */
+  --crema-pura: #fffef7;
+  --crema-elegante: #f5f5dc;
+  --crema-antigua: #fff8dc;
+  --crema-dorada: #fffacd;
+  --marfil: #fffff0;
+}
+
+/* ============================================================================
+   🎭 RESET Y CONFIGURACIÓN BASE PREMIUM
+============================================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: "Playfair Display", "Georgia", "Times New Roman", serif;
+  line-height: 1.7;
+  color: var(--crema-elegante);
+  background: linear-gradient(
+    135deg,
+    var(--azul-abismo) 0%,
+    var(--carbon-profundo) 25%,
+    var(--ciruela-imperial) 50%,
+    var(--bosque-nocturno) 75%,
+    var(--borgona-noche) 100%
+  );
+  background-attachment: fixed;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ============================================================================
+   🌟 TEXTURA DE FONDO LUJOSA
+============================================================================ */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(circle at 25% 25%, rgba(184, 134, 11, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(139, 69, 19, 0.03) 0%, transparent 50%),
+    linear-gradient(45deg, transparent 49%, rgba(245, 245, 220, 0.01) 50%, transparent 51%),
+    linear-gradient(-45deg, transparent 49%, rgba(245, 245, 220, 0.01) 50%, transparent 51%);
+  background-size: 200px 200px, 300px 300px, 20px 20px, 20px 20px;
+  animation: luxuryTexture 20s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes luxuryTexture {
+  0% {
+    opacity: 0.3;
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0.6;
+    transform: scale(1.02) rotate(1deg);
+  }
+}
+
+/* ============================================================================
+   👑 HEADER IMPERIAL CON ELEGANCIA SUPREMA
+============================================================================ */
+.header-top {
+  background: linear-gradient(
+    135deg,
+    var(--azul-abismo) 0%,
+    var(--carbon-profundo) 30%,
+    var(--ciruela-imperial) 60%,
+    var(--borgona-noche) 100%
+  );
+  color: var(--crema-elegante);
+  padding: 25px 0;
+  font-family: "Crimson Text", serif;
+  font-size: 15px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(245, 245, 220, 0.1), inset 0 -1px 0
+    rgba(184, 134, 11, 0.2);
+  border-bottom: 2px solid var(--oro-clasico);
+}
+
+.header-top::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(184, 134, 11, 0.1), transparent);
+  animation: luxuryShimmer 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes luxuryShimmer {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: -100%;
+  }
+}
+
+.header-top::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--oro-brillante) 20%,
+    var(--bronce-dorado) 40%,
+    var(--oro-champagne) 60%,
+    var(--bronce-claro) 80%,
+    transparent 100%
+  );
+  animation: goldFlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes goldFlow {
+  0% {
+    opacity: 0.5;
+    transform: scaleX(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+.contact-info span {
+  margin-right: 35px;
+  font-weight: 500;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  transition: all 0.4s ease;
+  letter-spacing: 0.5px;
+}
+
+.contact-info span:hover {
+  color: var(--oro-champagne);
+  text-shadow: 0 0 15px rgba(184, 134, 11, 0.8);
+  transform: translateY(-1px);
+}
+
+.contact-info i {
+  margin-right: 12px;
+  color: var(--oro-brillante);
+  filter: drop-shadow(0 0 8px rgba(184, 134, 11, 0.6));
+  animation: iconLuxury 3s ease-in-out infinite alternate;
+}
+
+@keyframes iconLuxury {
+  0% {
+    filter: drop-shadow(0 0 5px rgba(184, 134, 11, 0.4));
+  }
+  100% {
+    filter: drop-shadow(0 0 12px rgba(184, 134, 11, 0.8));
+  }
+}
+
+/* ============================================================================
+   🎩 BOTÓN LOGIN DE LUJO SUPREMO
+============================================================================ */
+.btn-login {
+  background: linear-gradient(
+    135deg,
+    var(--oro-antiguo) 0%,
+    var(--oro-clasico) 30%,
+    var(--bronce-medio) 60%,
+    var(--oro-brillante) 100%
+  );
+  color: var(--crema-pura);
+  border: 2px solid var(--oro-brillante);
+  padding: 18px 40px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-family: "Crimson Text", serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  box-shadow: 0 8px 25px rgba(184, 134, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0
+    rgba(0, 0, 0, 0.2);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.btn-login::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
+}
+
+.btn-login:hover::before {
+  left: 100%;
+}
+
+.btn-login::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(0, 0, 0, 0.1) 100%);
+  border-radius: 48px;
+  pointer-events: none;
+}
+
+.btn-login:hover {
+  background: linear-gradient(
+    135deg,
+    var(--oro-brillante) 0%,
+    var(--bronce-dorado) 30%,
+    var(--oro-champagne) 60%,
+    var(--bronce-arena) 100%
+  );
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 15px 40px rgba(184, 134, 11, 0.4), 0 0 30px rgba(218, 165, 32, 0.6), inset 0 1px 0
+    rgba(255, 255, 255, 0.3);
+  border-color: var(--oro-champagne);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* ============================================================================
+   🏰 NAVEGACIÓN ARISTOCRÁTICA CON GLASSMORPHISM
+============================================================================ */
+.navbar-custom {
+  background: rgba(11, 20, 38, 0.85);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(184, 134, 11, 0.2);
+  border-top: none;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(245, 245, 220, 0.1);
+  padding: 30px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: all 0.4s ease;
+}
+
+.navbar-custom.scrolled {
+  background: rgba(11, 20, 38, 0.95);
+  backdrop-filter: blur(35px);
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(245, 245, 220, 0.15);
+  border-bottom: 2px solid var(--oro-clasico);
+}
+
+.navbar-brand .logo {
+  height: 80px;
+  filter: drop-shadow(0 0 15px rgba(184, 134, 11, 0.6)) drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
+  transition: all 0.4s ease;
+}
+
+.navbar-brand .logo:hover {
+  filter: drop-shadow(0 0 25px rgba(184, 134, 11, 0.8)) drop-shadow(0 8px 15px rgba(0, 0, 0, 0.7));
+  transform: scale(1.08) rotate(2deg);
+}
+
+.navbar-nav .nav-link {
+  color: var(--crema-elegante);
+  font-family: "Crimson Text", serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 0 20px;
+  padding: 15px 30px;
+  border-radius: 35px;
+  position: relative;
+  text-transform: capitalize;
+  letter-spacing: 1px;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-nav .nav-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--oro-antiguo) 0%, var(--bronce-medio) 50%, var(--oro-brillante) 100%);
+  transition: left 0.5s ease;
+  z-index: -1;
+}
+
+.navbar-nav .nav-link::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(0, 0, 0, 0.1) 100%);
+  border-radius: 33px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.navbar-nav .nav-link:hover::before {
+  left: 0;
+}
+
+.navbar-nav .nav-link:hover::after {
+  opacity: 1;
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--crema-pura);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(184, 134, 11, 0.4), 0 0 20px rgba(218, 165, 32, 0.3);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+/* ============================================================================
+   🌟 HERO SECTION MAJESTUOSO
+============================================================================ */
+.hero-section {
+  background: linear-gradient(
+    135deg,
+    var(--azul-abismo) 0%,
+    var(--carbon-absoluto) 20%,
+    var(--ciruela-imperial) 40%,
+    var(--bosque-nocturno) 60%,
+    var(--borgona-noche) 80%,
+    var(--azul-profundo) 100%
+  );
+  color: var(--crema-elegante);
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(184, 134, 11, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(139, 69, 19, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(74, 26, 74, 0.05) 0%, transparent 50%);
+  animation: heroAura 8s ease-in-out infinite alternate;
+}
+
+@keyframes heroAura {
+  0% {
+    opacity: 0.4;
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0.7;
+    transform: scale(1.05) rotate(2deg);
+  }
+}
+
+.hero-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(45deg, transparent 49%, rgba(245, 245, 220, 0.02) 50%, transparent 51%),
+    linear-gradient(-45deg, transparent 49%, rgba(184, 134, 11, 0.02) 50%, transparent 51%);
+  background-size: 30px 30px, 30px 30px;
+  animation: luxuryPattern 25s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes luxuryPattern {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-30px, -30px);
+  }
+}
+
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 150px 0;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-title {
+  font-family: "Playfair Display", serif;
+  font-size: 6.5rem;
+  font-weight: 900;
+  margin-bottom: 40px;
+  background: linear-gradient(
+    135deg,
+    var(--crema-pura) 0%,
+    var(--oro-champagne) 25%,
+    var(--bronce-dorado) 50%,
+    var(--oro-brillante) 75%,
+    var(--crema-elegante) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 50px rgba(184, 134, 11, 0.5);
+  animation: titleMajesty 4s ease-in-out infinite alternate;
+  position: relative;
+  letter-spacing: 2px;
+}
+
+@keyframes titleMajesty {
+  0% {
+    filter: drop-shadow(0 0 20px rgba(184, 134, 11, 0.4));
+  }
+  100% {
+    filter: drop-shadow(0 0 40px rgba(218, 165, 32, 0.7));
+  }
+}
+
+.hero-title::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: linear-gradient(45deg, transparent 30%, rgba(184, 134, 11, 0.1) 50%, transparent 70%);
+  animation: titleAura 6s linear infinite;
+  z-index: -1;
+  border-radius: 10px;
+}
+
+@keyframes titleAura {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.hero-subtitle {
+  font-family: "Crimson Text", serif;
+  font-size: 2.8rem;
+  font-weight: 400;
+  margin-bottom: 40px;
+  color: var(--oro-champagne);
+  text-shadow: 0 0 25px rgba(244, 164, 96, 0.6);
+  animation: subtitleElegance 5s ease-in-out infinite alternate;
+  font-style: italic;
+  letter-spacing: 1px;
+}
+
+@keyframes subtitleElegance {
+  0% {
+    transform: translateY(0px);
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+}
+
+.hero-description {
+  font-family: "Crimson Text", serif;
+  font-size: 1.4rem;
+  margin-bottom: 50px;
+  line-height: 1.8;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+  animation: descriptionFadeIn 2.5s ease-in-out;
+  max-width: 600px;
+  color: var(--crema-antigua);
+}
+
+@keyframes descriptionFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================================
+   💎 BOTONES DE LUJO ABSOLUTO
+============================================================================ */
+.hero-buttons .btn {
+  margin: 25px 20px;
+  padding: 22px 55px;
+  font-family: "Crimson Text", serif;
+  font-size: 1.2rem;
+  border-radius: 50px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  border: 2px solid transparent;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.hero-buttons .btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.8s ease;
+}
+
+.hero-buttons .btn:hover::before {
+  left: 100%;
+}
+
+.hero-buttons .btn::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%, rgba(0, 0, 0, 0.1) 100%);
+  border-radius: 48px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.hero-buttons .btn:hover::after {
+  opacity: 1;
+}
+
+.btn-primary {
+  background: linear-gradient(
+    135deg,
+    var(--azul-profundo) 0%,
+    var(--azul-real) 30%,
+    var(--ciruela-media) 60%,
+    var(--azul-acero) 100%
+  );
+  color: var(--crema-pura);
+  border-color: var(--azul-cristal);
+  box-shadow: 0 12px 35px rgba(44, 74, 122, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(
+    135deg,
+    var(--oro-brillante) 0%,
+    var(--bronce-dorado) 30%,
+    var(--oro-champagne) 60%,
+    var(--bronce-arena) 100%
+  );
+  transform: translateY(-5px) scale(1.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 40px rgba(218, 165, 32, 0.6);
+  border-color: var(--oro-champagne);
+  color: var(--carbon-profundo);
+}
+
+.btn-success {
+  background: linear-gradient(
+    135deg,
+    var(--bosque-profundo) 0%,
+    var(--bosque-medio) 30%,
+    var(--bronce-medio) 60%,
+    var(--bosque-esmeralda) 100%
+  );
+  color: var(--crema-pura);
+  border-color: var(--bosque-jade);
+  box-shadow: 0 12px 35px rgba(46, 107, 71, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-success:hover {
+  background: linear-gradient(
+    135deg,
+    var(--bronce-dorado) 0%,
+    var(--oro-brillante) 30%,
+    var(--bronce-arena) 60%,
+    var(--oro-champagne) 100%
+  );
+  transform: translateY(-5px) scale(1.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 40px rgba(139, 69, 19, 0.6);
+  border-color: var(--bronce-dorado);
+  color: var(--carbon-profundo);
+}
+
+.btn-warning {
+  background: linear-gradient(
+    135deg,
+    var(--oro-antiguo) 0%,
+    var(--oro-clasico) 30%,
+    var(--oro-brillante) 60%,
+    var(--oro-champagne) 100%
+  );
+  color: var(--carbon-profundo);
+  border-color: var(--oro-brillante);
+  box-shadow: 0 12px 35px rgba(184, 134, 11, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-warning:hover {
+  background: linear-gradient(
+    135deg,
+    var(--oro-champagne) 0%,
+    var(--bronce-arena) 30%,
+    var(--oro-crema) 60%,
+    var(--marfil) 100%
+  );
+  transform: translateY(-5px) scale(1.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 40px rgba(244, 164, 96, 0.8);
+  border-color: var(--oro-champagne);
+  color: var(--carbon-absoluto);
+}
+
+.btn-danger {
+  background: linear-gradient(
+    135deg,
+    var(--borgona-profundo) 0%,
+    var(--borgona-medio) 30%,
+    var(--borgona-rubi) 60%,
+    var(--borgona-rosa) 100%
+  );
+  color: var(--crema-pura);
+  border-color: var(--borgona-rosa);
+  box-shadow: 0 12px 35px rgba(114, 47, 55, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-danger:hover {
+  background: linear-gradient(
+    135deg,
+    var(--oro-brillante) 0%,
+    var(--bronce-dorado) 30%,
+    var(--oro-champagne) 60%,
+    var(--bronce-arena) 100%
+  );
+  transform: translateY(-5px) scale(1.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 40px rgba(139, 0, 0, 0.6);
+  border-color: var(--oro-champagne);
+  color: var(--carbon-profundo);
+}
+
+.btn-info {
+  background: linear-gradient(
+    135deg,
+    var(--azul-profundo) 0%,
+    var(--azul-real) 30%,
+    var(--azul-acero) 60%,
+    var(--azul-cristal) 100%
+  );
+  color: var(--crema-pura);
+  border-color: var(--azul-cristal);
+  box-shadow: 0 12px 35px rgba(44, 74, 122, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.btn-info:hover {
+  background: linear-gradient(
+    135deg,
+    var(--bronce-dorado) 0%,
+    var(--oro-brillante) 30%,
+    var(--oro-champagne) 60%,
+    var(--bronce-arena) 100%
+  );
+  transform: translateY(-5px) scale(1.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 40px rgba(107, 142, 199, 0.6);
+  border-color: var(--oro-champagne);
+  color: var(--carbon-profundo);
+}
+
+.btn-secondary {
+  background: linear-gradient(
+    135deg,
+    var(--carbon-profundo) 0%,
+    var(--carbon-medio) 30%,
+    var(--carbon-claro) 60%,
+    var(--carbon-plata) 100%
+  );
+  color: var(--crema-elegante);
+  border-color: var(--carbon-plata);
+  box-shadow: 0 12px 35px rgba(44, 44, 44, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(
+    135deg,
+    var(--oro-clasico) 0%,
+    var(--bronce-medio) 30%,
+    var(--oro-brillante) 60%,
+    var(--bronce-dorado) 100%
+  );
+  transform: translateY(-5px) scale(1.08);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 40px rgba(90, 90, 92, 0.6);
+  border-color: var(--oro-brillante);
+  color: var(--carbon-profundo);
+}
+
+/* ============================================================================
+   🏛️ SECCIONES CON ELEGANCIA ARISTOCRÁTICA
+============================================================================ */
+.section-title {
+  font-family: "Playfair Display", serif;
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--crema-elegante);
+  margin-bottom: 50px;
+  text-align: center;
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    var(--crema-pura) 0%,
+    var(--oro-champagne) 30%,
+    var(--bronce-dorado) 60%,
+    var(--oro-brillante) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: sectionTitleGlow 5s ease-in-out infinite alternate;
+  letter-spacing: 1px;
+}
+
+@keyframes sectionTitleGlow {
+  0% {
+    filter: drop-shadow(0 0 15px rgba(184, 134, 11, 0.3));
+  }
+  100% {
+    filter: drop-shadow(0 0 30px rgba(218, 165, 32, 0.6));
+  }
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--oro-antiguo) 0%,
+    var(--oro-brillante) 25%,
+    var(--bronce-dorado) 50%,
+    var(--oro-champagne) 75%,
+    var(--bronce-arena) 100%
+  );
+  border-radius: 2px;
+  animation: underlineElegance 4s ease-in-out infinite alternate;
+  box-shadow: 0 0 10px rgba(184, 134, 11, 0.5);
+}
+
+@keyframes underlineElegance {
+  0% {
+    width: 80px;
+    opacity: 0.7;
+  }
+  100% {
+    width: 160px;
+    opacity: 1;
+  }
+}
+
+/* ============================================================================
+   🎨 PRODUCTOS CON LUJO SUPREMO
+============================================================================ */
+.productos-section {
+  padding: 120px 0;
+  background: linear-gradient(
+    135deg,
+    var(--azul-abismo) 0%,
+    var(--carbon-profundo) 25%,
+    var(--ciruela-imperial) 50%,
+    var(--bosque-nocturno) 75%,
+    var(--borgona-noche) 100%
+  );
+  position: relative;
+}
+
+.productos-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at 25% 25%, rgba(184, 134, 11, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(139, 69, 19, 0.05) 0%, transparent 50%),
+    linear-gradient(45deg, transparent 49%, rgba(245, 245, 220, 0.02) 50%, transparent 51%);
+  background-size: 300px 300px, 400px 400px, 40px 40px;
+  animation: luxuryBackground 30s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes luxuryBackground {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate(-100px, -100px) rotate(5deg);
+  }
+}
+
+.producto-card {
+  background: rgba(11, 20, 38, 0.6);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 2px solid rgba(184, 134, 11, 0.3);
+  border-radius: 25px;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  height: 100%;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(245, 245, 220, 0.1);
+}
+
+.producto-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(184, 134, 11, 0.05) 0%,
+    rgba(139, 69, 19, 0.05) 25%,
+    rgba(74, 26, 74, 0.05) 50%,
+    rgba(26, 43, 76, 0.05) 75%,
+    rgba(45, 27, 46, 0.05) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.producto-card:hover::before {
+  opacity: 1;
+}
+
+.producto-card::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(
+    45deg,
+    var(--oro-antiguo) 0%,
+    var(--bronce-medio) 25%,
+    var(--oro-brillante) 50%,
+    var(--bronce-dorado) 75%,
+    var(--oro-champagne) 100%
+  );
+  border-radius: 27px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.producto-card:hover::after {
+  opacity: 0.7;
+}
+
+.producto-card:hover {
+  transform: translateY(-15px) scale(1.02) rotateX(2deg);
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.4), 0 0 50px rgba(184, 134, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border-color: rgba(218, 165, 32, 0.6);
+}
+
+.producto-image {
+  position: relative;
+  overflow: hidden;
+  height: 320px;
+}
+
+.producto-card img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  transition: all 0.6s ease;
+  filter: brightness(0.9) contrast(1.1) saturate(1.1);
+}
+
+.producto-card:hover img {
+  transform: scale(1.1) rotate(1deg);
+  filter: brightness(1) contrast(1.2) saturate(1.3);
+}
+
+.producto-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(11, 20, 38, 0.8) 0%, rgba(28, 28, 30, 0.8) 50%, rgba(45, 27, 46, 0.8) 100%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  z-index: 2;
+}
+
+.producto-card:hover .producto-overlay {
+  opacity: 1;
+}
+
+.producto-overlay .btn {
+  margin: 8px;
+  padding: 12px 25px;
+  font-size: 0.9rem;
+  transform: translateY(30px);
+  transition: transform 0.4s ease 0.1s;
+}
+
+.producto-card:hover .producto-overlay .btn {
+  transform: translateY(0);
+}
+
+.producto-info {
+  padding: 35px;
+  position: relative;
+  z-index: 3;
+  background: rgba(11, 20, 38, 0.4);
+  backdrop-filter: blur(10px);
+}
+
+.producto-info h4 {
+  font-family: "Playfair Display", serif;
+  color: var(--crema-elegante);
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.producto-info .precio {
+  font-family: "Crimson Text", serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--oro-brillante);
+  margin-bottom: 12px;
+  text-shadow: 0 0 10px rgba(218, 165, 32, 0.4);
+}
+
+.producto-info .stock {
+  font-size: 0.9rem;
+  color: var(--crema-antigua);
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.producto-info .categoria {
+  margin-bottom: 15px;
+}
+
+.producto-info p {
+  color: var(--crema-antigua);
+  line-height: 1.7;
+  font-family: "Crimson Text", serif;
+}
+
+/* ============================================================================
+   🏆 DASHBOARD IMPERIAL
+============================================================================ */
+.dashboard-header {
+  background: linear-gradient(
+    135deg,
+    var(--azul-abismo) 0%,
+    var(--carbon-absoluto) 25%,
+    var(--ciruela-imperial) 50%,
+    var(--bosque-nocturno) 75%,
+    var(--borgona-noche) 100%
+  );
+  color: var(--crema-elegante);
+  padding: 50px;
+  border-radius: 25px;
+  margin-bottom: 50px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(245, 245, 220, 0.1);
+  border: 2px solid rgba(184, 134, 11, 0.3);
+}
+
+.dashboard-header::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 30%, rgba(184, 134, 11, 0.1) 50%, transparent 70%);
+  animation: dashboardAura 8s linear infinite;
+}
+
+@keyframes dashboardAura {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.dashboard-title {
+  font-family: "Playfair Display", serif;
+  font-size: 3.2rem;
+  font-weight: 900;
+  margin-bottom: 15px;
+  background: linear-gradient(135deg, var(--crema-pura) 0%, var(--oro-champagne) 50%, var(--bronce-dorado) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 30px rgba(184, 134, 11, 0.5);
+  position: relative;
+  z-index: 2;
+  letter-spacing: 1px;
+}
+
+.dashboard-subtitle {
+  font-family: "Crimson Text", serif;
+  font-size: 1.3rem;
+  opacity: 0.9;
+  position: relative;
+  z-index: 2;
+  font-style: italic;
+}
+
+.dashboard-card {
+  background: rgba(11, 20, 38, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 2px solid rgba(184, 134, 11, 0.2);
+  border-radius: 20px;
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(245, 245, 220, 0.1);
+}
+
+.dashboard-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--oro-antiguo) 0%, var(--oro-brillante) 50%, var(--bronce-dorado) 100%);
+  animation: cardGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes cardGlow {
+  0% {
+    opacity: 0.6;
+    box-shadow: 0 0 10px rgba(184, 134, 11, 0.3);
+  }
+  100% {
+    opacity: 1;
+    box-shadow: 0 0 20px rgba(218, 165, 32, 0.6);
+  }
+}
+
+.dashboard-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3), 0 0 40px rgba(184, 134, 11, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  border-color: rgba(218, 165, 32, 0.4);
+}
+
+.card-icon {
+  font-size: 3.5rem;
+  margin-right: 25px;
+  opacity: 0.9;
+  filter: drop-shadow(0 0 10px rgba(184, 134, 11, 0.3));
+  transition: all 0.3s ease;
+}
+
+.dashboard-card:hover .card-icon {
+  filter: drop-shadow(0 0 15px rgba(218, 165, 32, 0.6));
+  transform: scale(1.1);
+}
+
+.card-usuarios .card-icon {
+  color: var(--bosque-esmeralda);
+}
+.card-productos .card-icon {
+  color: var(--oro-brillante);
+}
+.card-ventas .card-icon {
+  color: var(--borgona-rosa);
+}
+.card-proveedores .card-icon {
+  color: var(--azul-cristal);
+}
+
+/* ============================================================================
+   📊 TABLAS ARISTOCRÁTICAS
+============================================================================ */
+.table {
+  background: rgba(11, 20, 38, 0.8);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(245, 245, 220, 0.1);
+  border: 1px solid rgba(184, 134, 11, 0.2);
+}
+
+.table thead th {
+  background: linear-gradient(135deg, var(--azul-profundo) 0%, var(--carbon-profundo) 50%, var(--ciruela-profunda) 100%);
+  color: var(--crema-elegante);
+  border: none;
+  padding: 25px 20px;
+  font-family: "Crimson Text", serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  position: relative;
+}
+
+.table thead th::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--oro-antiguo) 0%, var(--oro-brillante) 50%, var(--bronce-dorado) 100%);
+}
+
+.table tbody tr {
+  transition: all 0.4s ease;
+  border-bottom: 1px solid rgba(184, 134, 11, 0.1);
+}
+
+.table tbody tr:hover {
+  background: linear-gradient(
+    135deg,
+    rgba(184, 134, 11, 0.08) 0%,
+    rgba(139, 69, 19, 0.08) 50%,
+    rgba(74, 26, 74, 0.08) 100%
+  );
+  transform: scale(1.01);
+  box-shadow: 0 5px 15px rgba(184, 134, 11, 0.2);
+}
+
+.table tbody td {
+  padding: 20px;
+  border: none;
+  color: black;
+  font-family: "Crimson Text", serif;
+  vertical-align: middle;
+}
+
+/* ============================================================================
+   🎭 FOOTER MAJESTUOSO
+============================================================================ */
+.footer {
+  background: linear-gradient(
+    135deg,
+    var(--carbon-absoluto) 0%,
+    var(--azul-abismo) 25%,
+    var(--ciruela-imperial) 50%,
+    var(--bosque-nocturno) 75%,
+    var(--borgona-noche) 100%
+  );
+  color: var(--crema-elegante);
+  padding: 80px 0 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--oro-antiguo) 0%,
+    var(--oro-brillante) 25%,
+    var(--bronce-dorado) 50%,
+    var(--oro-champagne) 75%,
+    var(--bronce-arena) 100%
+  );
+  animation: footerGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes footerGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(184, 134, 11, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 25px rgba(218, 165, 32, 0.8);
+  }
+}
+
+.footer h5,
+.footer h6 {
+  font-family: "Playfair Display", serif;
+  color: var(--oro-champagne);
+  margin-bottom: 25px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.footer-links {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  color: var(--crema-antigua);
+  text-decoration: none;
+  font-family: "Crimson Text", serif;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.footer-links a::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--oro-brillante);
+  transition: width 0.3s ease;
+}
+
+.footer-links a:hover::before {
+  width: 100%;
+}
+
+.footer-links a:hover {
+  color: var(--oro-champagne);
+  text-shadow: 0 0 8px rgba(218, 165, 32, 0.6);
+}
+
+.social-links a {
+  display: inline-block;
+  width: 55px;
+  height: 55px;
+  background: linear-gradient(135deg, var(--oro-antiguo) 0%, var(--oro-brillante) 50%, var(--bronce-dorado) 100%);
+  color: var(--crema-pura);
+  text-align: center;
+  line-height: 55px;
+  border-radius: 50%;
+  margin-right: 15px;
+  transition: all 0.4s ease;
+  box-shadow: 0 8px 20px rgba(184, 134, 11, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  border: 2px solid var(--oro-brillante);
+}
+
+.social-links a:hover {
+  background: linear-gradient(135deg, var(--oro-champagne) 0%, var(--bronce-arena) 50%, var(--oro-crema) 100%);
+  transform: translateY(-5px) scale(1.1) rotate(5deg);
+  box-shadow: 0 15px 35px rgba(184, 134, 11, 0.4), 0 0 25px rgba(218, 165, 32, 0.6);
+  color: var(--carbon-profundo);
+}
+
+/* ============================================================================
+   💎 ALERTAS Y BADGES DE LUJO
+============================================================================ */
+.alert {
+  border-radius: 20px;
+  border: 2px solid transparent;
+  padding: 25px;
+  margin-bottom: 30px;
+  font-family: "Crimson Text", serif;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.alert-success {
+  background: linear-gradient(135deg, rgba(26, 74, 46, 0.8), rgba(46, 107, 71, 0.8));
+  color: var(--crema-elegante);
+  border-color: var(--bosque-esmeralda);
+}
+
+.alert-warning {
+  background: linear-gradient(135deg, rgba(184, 134, 11, 0.8), rgba(218, 165, 32, 0.8));
+  color: var(--carbon-profundo);
+  border-color: var(--oro-brillante);
+}
+
+.alert-danger {
+  background: linear-gradient(135deg, rgba(74, 14, 14, 0.8), rgba(114, 47, 55, 0.8));
+  color: var(--crema-elegante);
+  border-color: var(--borgona-rosa);
+}
+
+.alert-info {
+  background: linear-gradient(135deg, rgba(26, 43, 76, 0.8), rgba(44, 74, 122, 0.8));
+  color: var(--crema-elegante);
+  border-color: var(--azul-cristal);
+}
+
+.badge {
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-family: "Crimson Text", serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.bg-success {
+  background: linear-gradient(135deg, var(--bosque-profundo), var(--bosque-esmeralda)) !important;
+  color: var(--crema-pura) !important;
+}
+
+.bg-warning {
+  background: linear-gradient(135deg, var(--oro-clasico), var(--oro-brillante)) !important;
+  color: var(--carbon-profundo) !important;
+}
+
+.bg-danger {
+  background: linear-gradient(135deg, var(--borgona-profundo), var(--borgona-rubi)) !important;
+  color: var(--crema-pura) !important;
+}
+
+/* ============================================================================
+   📝 FORMULARIOS ARISTOCRÁTICOS
+============================================================================ */
+.form-control {
+  background: rgba(11, 20, 38, 0.6);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(184, 134, 11, 0.3);
+  border-radius: 15px;
+  padding: 18px 25px;
+  font-family: "Crimson Text", serif;
+  font-size: 16px;
+  color: var(--crema-elegante);
+  transition: all 0.4s ease;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.form-control::placeholder {
+  color: var(--crema-antigua);
+  opacity: 0.7;
+}
+
+.form-control:focus {
+  background: rgba(11, 20, 38, 0.8);
+  border-color: var(--oro-brillante);
+  box-shadow: 0 0 25px rgba(184, 134, 11, 0.3), inset 0 2px 5px rgba(0, 0, 0, 0.1);
+  color: var(--crema-pura);
+}
+
+.form-label {
+  font-family: "Crimson Text", serif;
+  font-weight: 600;
+  color: var(--oro-champagne);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.95rem;
+}
+
+/* ============================================================================
+   📱 RESPONSIVE DESIGN PREMIUM
+============================================================================ */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 4rem;
+  }
+
+  .hero-subtitle {
+    font-size: 2rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+  }
+
+  .dashboard-title {
+    font-size: 2.5rem;
+  }
+
+  .card-icon {
+    font-size: 2.5rem;
+    margin-right: 15px;
+  }
+
+  .hero-buttons .btn {
+    padding: 18px 35px;
+    font-size: 1rem;
+    margin: 15px 10px;
+  }
+
+  .navbar-nav .nav-link {
+    margin: 5px 10px;
+    padding: 12px 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 3rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .producto-card img {
+    height: 250px;
+  }
+
+  .producto-info {
+    padding: 25px;
+  }
+
+  .dashboard-header {
+    padding: 30px 20px;
+  }
+
+  .hero-buttons .btn {
+    padding: 15px 25px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ============================================================================
+   ✨ ANIMACIONES ADICIONALES DE LUJO
+============================================================================ */
+@keyframes luxuryFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes goldShimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+@keyframes luxuryPulse {
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes royalGlow {
+  0% {
+    box-shadow: 0 0 5px rgba(184, 134, 11, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(218, 165, 32, 0.6), 0 0 30px rgba(184, 134, 11, 0.4);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(184, 134, 11, 0.3);
+  }
+}
+
+/* ============================================================================
+   🎪 EFECTOS ESPECIALES DE LUJO
+============================================================================ */
+.luxury-glow {
+  animation: royalGlow 3s ease-in-out infinite;
+}
+
+.luxury-float {
+  animation: luxuryFloat 4s ease-in-out infinite;
+}
+
+.luxury-pulse {
+  animation: luxuryPulse 2s ease-in-out infinite;
+}
+
+/* ============================================================================
+   🔮 EFECTOS DE HOVER PREMIUM
+============================================================================ */
+.btn:hover {
+  animation: luxuryPulse 0.6s ease-in-out;
+}
+
+.card:hover {
+  animation: luxuryFloat 0.8s ease-in-out;
+}
+
+/* ============================================================================
+   💫 SCROLLBAR PERSONALIZADO DE LUJO
+============================================================================ */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(135deg, var(--carbon-profundo), var(--azul-abismo));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, var(--oro-antiguo), var(--oro-brillante));
+  border-radius: 10px;
+  border: 2px solid var(--carbon-profundo);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, var(--oro-brillante), var(--oro-champagne));
+  box-shadow: 0 0 10px rgba(218, 165, 32, 0.5);
+}
+
+/* ============================================================================
+   🌟 SELECCIÓN DE TEXTO PERSONALIZADA
+============================================================================ */
+::selection {
+  background: linear-gradient(135deg, var(--oro-clasico), var(--oro-brillante));
+  color: var(--carbon-profundo);
+}
+
+::-moz-selection {
+  background: linear-gradient(135deg, var(--oro-clasico), var(--oro-brillante));
+  color: var(--carbon-profundo);
+}
+
+/* ============================================================================
+   🎯 EFECTOS FINALES DE LUJO ABSOLUTO
+============================================================================ */
+.container {
+  position: relative;
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(184, 134, 11, 0.02) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Fin del CSS de Lujo Absoluto */
